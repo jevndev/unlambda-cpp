@@ -4,6 +4,8 @@
 #include <string>
 #include <type_traits>
 
+namespace Unlambda {
+
 template <typename T>
 concept ProgramOutput = requires(T &t, char c) {
   { t.operator<<(c) } -> std::same_as<T &>;
@@ -14,7 +16,6 @@ concept ProgramInput = requires(T &t, int &c) {
   { t.operator>>(c) } -> std::same_as<T &>;
 };
 
-namespace Unlambda {
 class Program {
 public:
   constexpr explicit Program(const std::string_view source) noexcept {}
